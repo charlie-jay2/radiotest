@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Radio</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background: #222;
+        color: white;
+      }
+      .container {
+        margin-top: 100px;
+      }
+      audio {
+        width: 80%;
+        max-width: 400px;
+        margin-top: 20px;
+      }
+      .song-info {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Live Radio Stream</h1>
+      <audio controls autoplay>
+        <source src="https://stream.zeno.fm/xxxxxxxx" type="audio/mpeg" />
+        Your browser does not support audio streaming.
+      </audio>
+      <br /><br />
+      <div class="song-info" id="nowPlaying">Loading song...</div>
+      <br />
+      <button onclick="window.location.reload()">Reload Stream</button>
+    </div>
+
+    <script>
+      async function updateNowPlaying() {
+        const response = await fetch(
+          "https://my-radio-api.onrender.com/nowplaying"
+        );
+        const data = await response.json();
+        document.getElementById("nowPlaying").textContent =
+          data.song || "Unknown";
+      }
+      setInterval(updateNowPlaying, 5000);
+      updateNowPlaying();
+    </script>
+  </body>
+</html>
