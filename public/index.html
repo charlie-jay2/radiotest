@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Radio Stream</title>
+  </head>
+  <body>
+    <h1>Now Playing</h1>
+    <!-- Audio Player -->
+    <audio id="audioPlayer" controls autoplay>
+      <source src="http://localhost:3000/stream" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      // Add any JavaScript if needed to control the player
+      const audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.onplay = () => {
+        console.log("Audio is playing...");
+      };
+    </script>
+  </body>
+</html>
